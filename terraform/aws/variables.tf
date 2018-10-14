@@ -8,6 +8,6 @@ variable "cluster-name" {
 }
 
 variable "workers" {
-  default = "2"
+  default = "4"
   type    = "string"
 }
