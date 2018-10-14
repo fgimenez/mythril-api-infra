@@ -2,9 +2,10 @@
 set -xe
 
 PROVIDER=${1:-aws}
-WORKERS=${2:-1}
+WORKERS=${4:-1}
 
 cd ./terraform/${PROVIDER}
+terraform init
 terraform apply -auto-approve -var workers=${WORKERS}
 
 terraform output kubeconfig | tee kubeconfig-${PROVIDER}.yaml
