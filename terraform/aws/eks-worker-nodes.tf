@@ -126,6 +126,11 @@ systemctl restart kubelet
 USERDATA
 }
 
+resource "aws_key_pair" "mythril-api" {
+  key_name   = "mythril-api-key"
+  public_key = "${var.ssh_public_key}"
+}
+
 resource "aws_launch_configuration" "mythril-api" {
   associate_public_ip_address = true
   iam_instance_profile        = "${aws_iam_instance_profile.mythril-api-node.name}"
@@ -134,6 +139,7 @@ resource "aws_launch_configuration" "mythril-api" {
   name_prefix                 = "terraform-eks-mythril-api"
   security_groups             = ["${aws_security_group.mythril-api-node.id}"]
   user_data_base64            = "${base64encode(local.mythril-api-node-userdata)}"
+  key_name                    = "${aws_key_pair.mythril-api.key_name}"
 
   lifecycle {
     create_before_destroy = true
