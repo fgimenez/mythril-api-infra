@@ -15,6 +15,7 @@ if [ "${PROVIDER}" = aws ]; then
     terraform output config_map_aws_auth | tee configmap-aws-auth.yaml
 
     kubectl apply -f ./configmap-aws-auth.yaml
+    kubectl apply -f ./storageclass.yaml
 
 elif [ "${PROVIDER}" = azure ]; then
     kubectl apply --validate=false -f ./cluster-roles.yaml
