@@ -2,7 +2,7 @@ variable "client_id" {}
 variable "client_secret" {}
 
 variable "workers" {
-  default = 3
+  default = 4
 }
 
 variable "ssh_public_key" {
@@ -18,11 +18,11 @@ variable cluster_name {
 }
 
 variable resource_group_name {
-  default = "azure-mythril-api"
+  default = "mythril-api-platform"
 }
 
 variable location {
-  default = "Central US"
+  default = "East US"
 }
 
 variable "k8s_version" {
