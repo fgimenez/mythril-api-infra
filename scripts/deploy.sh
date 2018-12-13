@@ -20,6 +20,8 @@ elif [ "${PROVIDER}" = azure ]; then
     kubectl apply --validate=false -f ./cluster-roles.yaml
 
     kubectl apply -f ./cluster-role-bindings.yaml
+
+    kubectl delete pvc default
 fi
 
 kubectl apply -f ./storageclass.yaml

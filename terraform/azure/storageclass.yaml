@@ -2,4 +2,9 @@ kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
   name: standard
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+  labels:
+    kubernetes.io/cluster-service: "true"
+    addonmanager.kubernetes.io/mode: EnsureExists
 provisioner: kubernetes.io/azure-disk
