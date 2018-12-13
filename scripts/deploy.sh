@@ -17,10 +17,13 @@ if [ "${PROVIDER}" = aws ]; then
     cat iam-users.yaml | tee -a configmap-aws-auth.yaml
 
     kubectl apply -f ./configmap-aws-auth.yaml
-    kubectl apply -f ./storageclass.yaml
 
 elif [ "${PROVIDER}" = azure ]; then
     kubectl apply --validate=false -f ./cluster-roles.yaml
 
     kubectl apply -f ./cluster-role-bindings.yaml
+
+    kubectl delete pvc default
 fi
+
+kubectl apply -f ./storageclass.yaml
