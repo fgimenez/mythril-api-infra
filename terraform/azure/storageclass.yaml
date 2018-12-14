@@ -8,3 +8,9 @@ metadata:
     kubernetes.io/cluster-service: "true"
     addonmanager.kubernetes.io/mode: EnsureExists
 provisioner: kubernetes.io/azure-disk
+parameters:
+  cachingmode: None
+  kind: Managed
+  storageaccounttype: Standard_LRS
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
