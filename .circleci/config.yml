@@ -1,19 +1,4 @@
-version: 2
-jobs:
-  validate:
-    docker:
-      - image: broadinstitute/terraform:0.11.8
-        entrypoint: /bin/bash
-    steps:
-      - checkout
-      - run:
-          name: checks
-          command: |
-            cd ./terraform/aws
-            terraform init
-            terraform validate
-            terraform plan
-  deploy:
+deploy: &deploy
     docker:
       - image: broadinstitute/terraform:0.11.8
         entrypoint: /bin/bash
@@ -34,14 +19,46 @@ jobs:
       - run:
           name: deploy
           command: |
-            ./scripts/deploy.sh
+            ./scripts/deploy.sh ${PROVIDER}
+
+version: 2
+jobs:
+  validate:
+    docker:
+      - image: broadinstitute/terraform:0.11.8
+        entrypoint: /bin/bash
+    steps:
+      - checkout
+      - run:
+          name: checks
+          command: |
+            cd ./terraform/aws
+            terraform init
+            terraform validate
+            terraform plan
+
+  awsDeploy:
+    environment:
+      PROVIDER: aws
+    <<: *deploy
+
+  azureDeploy:
+    environment:
+      PROVIDER: azure
+    <<: *deploy
 
 workflows:
   version: 2
   test-deploy:
     jobs:
       - validate
-      - deploy:
+      - awsDeploy:
+          requires:
+            - validate
+          filters:
+            branches:
+              only: /^master$/
+      - azureDeploy:
           requires:
             - validate
           filters:
