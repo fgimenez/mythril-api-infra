@@ -2,7 +2,7 @@
 set -xe
 
 PROVIDER=${1:-aws}
-WORKERS=${2:-4}
+WORKERS=${2:-6}
 
 cd ./terraform/${PROVIDER}
 terraform init
