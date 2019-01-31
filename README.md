@@ -1,6 +1,6 @@
 ### mythril-api-infra
 
-Readies Azure and AWS clusters for API deployment staging/production. Terraform files are used to managed each environment under `terraform\${PROVIDER}`. 
+Readies Azure and AWS clusters for API deployment on staging/production. Terraform files are used to managed each environment under `terraform\${PROVIDER}`. 
 
 Azure: hosts the staging environment. [Configuration](https://github.com/ConsenSys/mythril-api-infra/tree/master/terraform/azure)
 
