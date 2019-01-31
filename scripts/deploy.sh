@@ -18,7 +18,7 @@ if [ "${PROVIDER}" = aws ]; then
 
     kubectl apply -f ./configmap-aws-auth.yaml
 
-    kubectl create -f ./metrics-server/
+    kubectl apply -f ./metrics-server/
 
 elif [ "${PROVIDER}" = azure ]; then
     kubectl apply --validate=false -f ./cluster-roles.yaml
