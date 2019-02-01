@@ -51,6 +51,16 @@ resource "aws_security_group" "mythril-api-cluster" {
   }
 }
 
+resource "aws_security_group_rule" "node_ingress_cluster_https" {
+  description              = "Allow incoming https connections from the EKS masters security group"
+  from_port                = 443
+  to_port                  = 443
+  protocol                 = "tcp"
+  security_group_id        = "${aws_security_group.mythril-api-node.id}"
+  source_security_group_id = "${aws_security_group.mythril-api-cluster.id}"
+  type                     = "ingress"
+}
+
 resource "aws_security_group_rule" "mythril-api-cluster-ingress-node-https" {
   description              = "Allow pods to communicate with the cluster API Server"
   from_port                = 443
