@@ -137,6 +137,9 @@ spec:
             - --cloud-provider=aws
             - --skip-nodes-with-local-storage=false
             - --nodes=7:9:terraform-eks-mythril-api
+          env:
+            - name: AWS_REGION
+              value: us-east-1
           volumeMounts:
             - name: ssl-certs
               mountPath: /etc/ssl/certs/ca-bundle.crt
