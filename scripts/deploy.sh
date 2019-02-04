@@ -20,6 +20,8 @@ if [ "${PROVIDER}" = aws ]; then
 
     kubectl apply -f ./metrics-server/
 
+    kubectl apply -f ./cluster-autoscaler-one-asg.yaml
+
 elif [ "${PROVIDER}" = azure ]; then
     kubectl apply --validate=false -f ./cluster-roles.yaml
 
