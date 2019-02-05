@@ -26,6 +26,34 @@ resource "aws_iam_role" "mythril-api-node" {
 POLICY
 }
 
+resource "aws_iam_policy" "mythril-api-node-autoscaling" {
+  name        = "terraform-eks-mythril-api-node-autoscaling"
+  description = "Node policy to allow autoscaling."
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "autoscaling:DescribeAutoScalingGroups",
+        "autoscaling:DescribeAutoScalingInstances",
+        "autoscaling:SetDesiredCapacity",
+        "autoscaling:TerminateInstanceInAutoScalingGroup"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "mythril-api-node-autoscaling" {
+  policy_arn = "${aws_iam_policy.mythril-api-node-autoscaling.arn}"
+  role       = "${aws_iam_role.mythril-api-node.name}"
+}
+
 resource "aws_iam_role_policy_attachment" "mythril-api-node-AmazonEKSWorkerNodePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
   role       = "${aws_iam_role.mythril-api-node.name}"
