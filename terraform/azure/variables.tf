@@ -26,5 +26,5 @@ variable location {
 }
 
 variable "k8s_version" {
-  default = "1.11.3"
+  default = "1.11.6"
 }
