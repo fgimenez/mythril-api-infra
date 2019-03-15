@@ -18,8 +18,6 @@ if [ "${PROVIDER}" = aws ]; then
 
     kubectl apply -f ./configmap-aws-auth.yaml
 
-    kubectl apply -f ./metrics-server/
-
     kubectl apply -f ./cluster-autoscaler-one-asg.yaml
 
 elif [ "${PROVIDER}" = azure ]; then
@@ -29,3 +27,5 @@ elif [ "${PROVIDER}" = azure ]; then
 fi
 
 kubectl apply -f ./storageclass.yaml
+
+kubectl apply -f ./metrics-server/
