@@ -177,7 +177,7 @@ resource "aws_launch_configuration" "mythril-api" {
 resource "aws_autoscaling_group" "mythril-api" {
   desired_capacity     = "${var.workers}"
   launch_configuration = "${aws_launch_configuration.mythril-api.id}"
-  max_size             = "${var.workers}"
+  max_size             = 32
   min_size             = 1
   name                 = "terraform-eks-mythril-api"
   vpc_zone_identifier  = ["${aws_subnet.mythril-api.*.id}"]
