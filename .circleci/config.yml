@@ -47,6 +47,11 @@ jobs:
       PROVIDER: azure
     <<: *deploy
 
+  azureProdDeploy:
+    environment:
+      PROVIDER: azureprod
+    <<: *deploy
+
 workflows:
   version: 2
   test-deploy:
@@ -59,6 +64,12 @@ workflows:
             branches:
               only: /^master$/
       - azureDeploy:
+          requires:
+            - validate
+          filters:
+            branches:
+              only: /^master$/
+      - azureProdDeploy:
           requires:
             - validate
           filters:

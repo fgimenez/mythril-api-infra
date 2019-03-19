@@ -10,15 +10,15 @@ variable "ssh_public_key" {
 }
 
 variable "dns_prefix" {
-  default = "mythril-api"
+  default = "mythril-api-prod"
 }
 
 variable cluster_name {
-  default = "mythril-api"
+  default = "mythril-api-prod"
 }
 
 variable resource_group_name {
-  default = "mythril-api-platform"
+  default = "mythril-api-platform-prod"
 }
 
 variable location {
