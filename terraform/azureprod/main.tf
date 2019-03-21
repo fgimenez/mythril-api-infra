@@ -4,8 +4,8 @@ provider "azurerm" {
 
 terraform {
   backend "azurerm" {
-    storage_account_name = "mythrilapi"
+    storage_account_name = "mythx"
     container_name       = "tfstate"
-    key                  = "mythrilapi.production.tfstate"
+    key                  = "mythx.production.tfstate"
   }
 }
