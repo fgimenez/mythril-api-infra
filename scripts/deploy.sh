@@ -4,6 +4,10 @@ set -xe
 PROVIDER=${1:-aws}
 WORKERS=${2:-9}
 
+if [ "${PROVIDER}" = azureprod ]; then
+    WORKERS=24
+fi
+
 cd ./terraform/${PROVIDER}
 terraform init
 terraform apply -auto-approve -var workers=${WORKERS}
