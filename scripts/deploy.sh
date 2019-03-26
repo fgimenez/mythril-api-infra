@@ -2,7 +2,7 @@
 set -xe
 
 PROVIDER=${1:-aws}
-WORKERS=${2:-9}
+WORKERS=${2:-12}
 
 if [ "${PROVIDER}" = azureprod ]; then
     WORKERS=24
