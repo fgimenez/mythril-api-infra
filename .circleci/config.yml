@@ -37,11 +37,6 @@ jobs:
             terraform validate
             terraform plan
 
-  awsDeploy:
-    environment:
-      PROVIDER: aws
-    <<: *deploy
-
   azureDeploy:
     environment:
       PROVIDER: azure
@@ -57,12 +52,6 @@ workflows:
   test-deploy:
     jobs:
       - validate
-      - awsDeploy:
-          requires:
-            - validate
-          filters:
-            branches:
-              only: /^master$/
       - azureDeploy:
           requires:
             - validate
