@@ -32,7 +32,7 @@ jobs:
       - run:
           name: checks
           command: |
-            cd ./terraform/aws
+            cd ./terraform/azure
             terraform init
             terraform validate
             terraform plan
